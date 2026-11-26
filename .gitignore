@@ -34,3 +34,5 @@ data/incidents/
 .DS_Store
 .vscode/
 .idea/
+
+/data/chroma_db_onnx/

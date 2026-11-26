@@ -4,11 +4,11 @@ import hashlib
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
+from backend.rag.embeddings import LightweightEmbeddings
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 DOCUMENTS_DIR = BASE_DIR / "data" / "documents"
-CHROMA_PATH = BASE_DIR / "data" / "chroma_db"
+CHROMA_PATH = BASE_DIR / "data" / "chroma_db_onnx"
 
 def main():
     files = sorted(DOCUMENTS_DIR.glob("*.txt"))
@@ -37,9 +37,7 @@ def main():
 
     chunks = splitter.split_documents(documents)
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+    embeddings = LightweightEmbeddings()
 
     vectorstore = Chroma(
         collection_name="sentinelai_docs",

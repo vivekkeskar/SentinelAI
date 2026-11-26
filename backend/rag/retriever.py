@@ -1,14 +1,12 @@
 from pathlib import Path
 
 from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from backend.rag.embeddings import LightweightEmbeddings
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 CHROMA_PATH = BASE_DIR / "data/chroma_db"
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
+embeddings = LightweightEmbeddings()
 
 vectorstore = Chroma(
     collection_name="sentinelai_docs",
