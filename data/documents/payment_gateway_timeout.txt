@@ -1,0 +1,45 @@
+Payment Gateway Timeout Troubleshooting
+
+Category: Payment Processing
+Keywords: SocketTimeoutException, payment timeout, gateway latency, payment failure
+
+Problem:
+Payment service cannot obtain a response from the external payment gateway within the configured timeout.
+
+Common Error Signatures:
+- SocketTimeoutException
+- Payment gateway request timed out
+- HTTP 504 POST /api/payments
+- Maximum retry attempts exceeded
+
+Possible Causes:
+1. External payment gateway latency or outage.
+2. Network connectivity problems.
+3. DNS or TLS connection delays.
+4. Application thread or connection pool saturation.
+5. Timeout settings unsuitable for observed latency.
+
+Investigation Steps:
+1. Check payment gateway response latency and availability.
+2. Inspect gateway request IDs and transaction status.
+3. Check network connectivity, DNS and TLS errors.
+4. Review application timeout and retry configuration.
+5. Correlate errors with traffic spikes and recent deployments.
+
+Recommended Solutions:
+1. Check payment status before attempting another charge.
+2. Use idempotency keys for safely retried payment operations.
+3. Apply bounded retries only where the operation is safe to retry.
+4. Implement exponential backoff with jitter where appropriate.
+5. Tune timeouts based on observed latency and service requirements.
+6. Alert on payment failure rates and gateway latency.
+
+Verification:
+1. Confirm payment status with the gateway.
+2. Verify no duplicate charges occurred.
+3. Test timeout and retry behavior.
+4. Monitor gateway latency and payment success rates.
+
+Root Cause Guidance:
+A timeout does not prove that the payment request failed or never reached the gateway.
+The payment may have succeeded even if the response was not received.

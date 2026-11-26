@@ -1,0 +1,44 @@
+API Gateway HTTP 504 Troubleshooting
+
+Category: API Gateway
+Keywords: HTTP 504, Gateway Timeout, upstream timeout, service latency
+
+Problem:
+An API gateway returns HTTP 504 because it did not receive a timely response from an upstream service.
+
+Common Error Signatures:
+- HTTP 504 Gateway Timeout
+- Upstream request timed out
+- Gateway response timeout
+- Upstream service unavailable or slow
+
+Possible Causes:
+1. Upstream service response latency.
+2. Slow database queries.
+3. Network connectivity issues.
+4. Application resource saturation.
+5. Timeout mismatch between gateway and upstream services.
+
+Investigation Steps:
+1. Identify the upstream service handling the failed request.
+2. Inspect distributed traces and correlation IDs.
+3. Measure upstream service latency.
+4. Check database and dependency performance.
+5. Compare gateway and application timeout configurations.
+
+Recommended Solutions:
+1. Fix slow upstream operations.
+2. Optimize database queries and external dependency calls.
+3. Configure appropriate timeouts across services.
+4. Apply circuit breakers where suitable.
+5. Add monitoring for gateway errors and upstream latency.
+
+Verification:
+1. Confirm the affected endpoint responds successfully.
+2. Check that HTTP 504 errors decrease.
+3. Verify latency under representative load.
+4. Review traces to confirm the actual bottleneck.
+
+Root Cause Guidance:
+HTTP 504 indicates an upstream response timeout.
+It does not independently identify the underlying cause.

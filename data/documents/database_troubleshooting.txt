@@ -1,0 +1,25 @@
+
+Database Connection Pool Troubleshooting
+
+Problem: Database connection pool exhausted.
+
+Possible Causes:
+1. Connections are not properly closed.
+2. Long-running database queries.
+3. Sudden increase in API traffic.
+4. Connection pool size is too small.
+5. Database performance degradation.
+
+Investigation Steps:
+1. Check active and idle database connections.
+2. Inspect slow-running queries.
+3. Review application connection pool settings.
+4. Check database CPU and memory usage.
+5. Investigate recent deployments.
+
+Recommended Solutions:
+1. Fix connection leaks.
+2. Optimize slow database queries.
+3. Adjust connection pool size based on measured capacity.
+4. Configure connection acquisition timeouts.
+5. Monitor database connection usage.
