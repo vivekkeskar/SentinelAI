@@ -4,7 +4,7 @@ from langchain_chroma import Chroma
 from backend.rag.embeddings import LightweightEmbeddings
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-CHROMA_PATH = BASE_DIR / "data/chroma_db"
+CHROMA_PATH = BASE_DIR / "data" / "chroma_db_onnx"
 
 embeddings = LightweightEmbeddings()
 
